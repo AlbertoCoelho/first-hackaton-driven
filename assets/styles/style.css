@@ -36,6 +36,17 @@ header img {
   background-color: blueviolet;
 }
 
+.clima__icone{
+    width: 80px;
+    position: absolute;
+    top: 0px;
+}
+
+.clima{
+    margin-top: 15px;
+    position: relative;
+}
+
 .menu-clima {
   width: 100%;
   height: 35px;

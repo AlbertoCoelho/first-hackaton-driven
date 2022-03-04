@@ -15,19 +15,46 @@ if (navigator.geolocation) {
   );
 }
 
+
+
+
 function pegarDadosAPI(latitude, longitude) {
-  const promessa = axios.get(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
-  );
+    const promessa = axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+    );
 
-  promessa.then(dados => {
-    console.log(dados);
-  });
+    promessa.then(dados => {
+        console.log(dados);
+        dados = dados.data
+        
+        let cidade = dados.name
 
-  promessa.catch(erro => {});
+        let icone = dados.weather;
+        
+        console.log(icone);
+
+        let temperatura = dados.main.temp
+        temperatura = (temperatura - 273).toFixed(0);
+        
+        const  tela1 = document.querySelector(".container-esquerdo")
+
+        tela1.innerHTML= `
+        <div>
+            Nome da cidade onde voce está: ${cidade}
+        </div>
+            
+        <div class="clima">
+            A temperatura é: ${temperatura}ºC
+            <img class="clima__icone" src="http://openweathermap.org/img/wn/${icone[0].icon}@2x.png">
+        </div>
+        
+        `
+
+    });
 }
 
-function exibirMenu(cidade) {
+
+function exibirMenu() {
     const menuClima = document.querySelector(".tabela-clima");
     const promessa = axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiKey}`
@@ -49,6 +76,7 @@ function pegarDadosCidadeAPI(cidade) {
 
   promessa.then(dados => {
     console.log(dados);
+    mostrarNaTela(dados)
   });
 
   promessa.catch(() => {
@@ -57,3 +85,33 @@ function pegarDadosCidadeAPI(cidade) {
     pegarDadosCidadeAPI(cidade);
   });
 }
+
+
+function mostrarNaTela(dados){
+    console.log(dados.data);
+    dados = dados.data
+        
+        let cidademaneira = dados.name
+
+        let icone = dados.weather;
+        
+        console.log(icone);
+
+        let temperatura = dados.main.temp
+        temperatura = (temperatura - 273).toFixed(0);
+        
+        const  tela1 = document.querySelector(".container-esquerdo")
+
+        tela1.innerHTML= `
+        <div>
+            Nome da cidade onde voce está: ${cidademaneira}
+        </div>
+            
+        <div class="clima">
+            A temperatura é: ${temperatura}ºC
+            <img class="clima__icone" src="http://openweathermap.org/img/wn/${icone[0].icon}@2x.png">
+        </div>
+        
+        `
+
+    };
