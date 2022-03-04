@@ -15,6 +15,8 @@ if (navigator.geolocation) {
     );
 }
 
+let icone = null
+
 function executarAPI(latitude, longitude) {
     const promessa = axios.get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
@@ -22,6 +24,31 @@ function executarAPI(latitude, longitude) {
 
     promessa.then(dados => {
         console.log(dados);
+        dados = dados.data
+        
+        let cidade = dados.name
+
+        icone = dados.weather;
+        
+        console.log(icone);
+
+        let temperatura = dados.main.temp
+        temperatura = (temperatura - 273).toFixed(0);
+        
+        const  tela1 = document.querySelector(".container-esquerdo")
+
+        tela1.innerHTML= `
+        <div>
+            Nome da cidade onde voce está: ${cidade}
+        </div>
+            
+        <div>
+            A temperatura é: ${temperatura}ºC
+            <img src="http://openweathermap.org/img/wn/${icone[0].icon}@2x.png">
+        </div>
+        
+        `
+
     });
 
     promessa.catch(erro => {
