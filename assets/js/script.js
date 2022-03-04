@@ -53,6 +53,12 @@ function pegarDadosAPI(latitude, longitude) {
 }
 
 
+function exibirMenu() {
+    const menuClima = document.querySelector(".tabela-clima");
+    let now = new Date;
+    menuClima.innerHTML += "Hoje é " + now.getDay() + "," + " de " + now.getMonth() + " de " + now.getFullYear() + "  saddsaasddasasd  " + "adsdsadasdasdasdasdas"; 
+}
+exibirMenu();
 
 function pegarDadosCidadeAPI(cidade) {
   console.log(cidade);
