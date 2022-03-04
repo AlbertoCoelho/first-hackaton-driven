@@ -10,6 +10,7 @@ if (navigator.geolocation) {
     () => {
       const cidade = prompt('Qual é a sua cidade?');
       pegarDadosCidadeAPI(cidade);
+      exibirMenu(cidade);
     }
   );
 }
@@ -26,10 +27,17 @@ function pegarDadosAPI(latitude, longitude) {
   promessa.catch(erro => {});
 }
 
-function exibirMenu() {
+function exibirMenu(cidade) {
     const menuClima = document.querySelector(".tabela-clima");
-    let now = new Date;
-    menuClima.innerHTML += "Hoje é " + now.getDay() + "," + " de " + now.getMonth() + " de " + now.getFullYear() + "  saddsaasddasasd  " + "adsdsadasdasdasdasdas"; 
+    const promessa = axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiKey}`
+      );
+
+      promessa.then(dados => {
+          let now = new Date;
+          menuClima.innerHTML += "Hoje é " + now.getDay() + "," + " de " + now.getMonth() + " de " + now.getFullYear() + `${dados.data.weather[0].description}`   + ` ${dados.data.wind.speed}`; 
+      });
+      
 }
 exibirMenu();
 
