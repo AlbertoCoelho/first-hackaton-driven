@@ -20,5 +20,20 @@ header img{
 
 .container-principal{
     display: flex;
+    height: calc(100vh - 5rem);
 }
 
+.container-esquerdo{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: aquamarine;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-direito{
+width: 50%;
+background-color: blueviolet;
+}
