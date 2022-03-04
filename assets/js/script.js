@@ -1,10 +1,19 @@
 const apiKey = 'f25110b0f83adb9f7c080ee182cd1d00';
 
-navigator.geolocation.getCurrentPosition(position => {
-  console.log(position.coords.latitude);
-  console.log(position.coords.longitude);
-  executarAPI(position.coords.latitude, position.coords.longitude);
-});
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(
+    position => {
+      console.log(position.coords.latitude);
+      console.log(position.coords.longitude);
+      executarAPI(position.coords.latitude, position.coords.longitude);
+    },
+    () => {
+      const latitude = prompt('Qual é a latitude?');
+      const longitude = prompt('Qual é a longitude?');
+      executarAPI(latitude, longitude);
+    }
+  );
+}
 
 function executarAPI(latitude, longitude) {
   const promessa = axios.get(
@@ -15,5 +24,9 @@ function executarAPI(latitude, longitude) {
     console.log(dados);
   });
 
-  promessa.catch(erro => {});
+  promessa.catch(erro => {
+    const latitude = prompt('Qual é a latitude?');
+    const longitude = prompt('Qual é a longitude?');
+    executarAPI(latitude, longitude);
+  });
 }
