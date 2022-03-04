@@ -54,7 +54,7 @@ function pegarDadosAPI(latitude, longitude) {
 }
 
 
-function exibirMenu() {
+function exibirMenu(cidade) {
     const menuClima = document.querySelector(".tabela-clima");
     const promessa = axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&appid=${apiKey}`
