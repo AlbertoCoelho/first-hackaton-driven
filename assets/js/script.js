@@ -42,9 +42,9 @@ function executarAPI(latitude, longitude) {
             Nome da cidade onde voce está: ${cidade}
         </div>
             
-        <div>
+        <div class="clima">
             A temperatura é: ${temperatura}ºC
-            <img src="http://openweathermap.org/img/wn/${icone[0].icon}@2x.png">
+            <img class="clima__icone" src="http://openweathermap.org/img/wn/${icone[0].icon}@2x.png">
         </div>
         
         `

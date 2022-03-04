@@ -36,3 +36,14 @@ header img {
   width: 50%;
   background-color: blueviolet;
 }
+
+.clima__icone{
+    width: 80px;
+    position: absolute;
+    top: 0px;
+}
+
+.clima{
+    margin-top: 15px;
+    position: relative;
+}
